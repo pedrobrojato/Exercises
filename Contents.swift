@@ -81,5 +81,89 @@ returnTheNumbers(myText: "CIVIC 2008")
 
 
 //10
+class Product {
+    let id: Int
+    let name: String
+    let price: Double
+    
+    init(id: Int, name: String, price: Double) {
+        self.id = id
+        self.name = name
+        self.price = price
+    }
+}
 
+class Cart {
+    private var produtos: [Product]
+    
+    init() {
+        self.produtos = []
+    }
+    
+    init(produtos: [Product]) {
+        self.produtos = produtos
+    }
+    
+    
+    func addProduct(with product: Product) {
+        self.produtos.append(product)
+        print("Produto \(product.name) foi adicionado")
+    }
+    
+    /*
+     Essa funcao procura a posicao do produto pelo id e depois o romove.
+     */
+    func removeProduct(id: Int) {
+        let index = self.produtos.firstIndex { product in
+            return product.id == id
+        }
+        if let index = index {
+            self.produtos.remove(at: index)
+            print("Produto \(id) foi removido")
+        } else {
+            print("Produto nao encontrado ")
+        }
+    }
 
+    func clearCart() {
+        self.produtos.removeAll()
+        print("Carrinho vazio")
+    }
+    
+    func total() -> Double {
+        var total: Double = 0.0
+        for produto in produtos {
+            total = total + produto.price
+        }
+        return total
+    }
+    
+    func total2() -> Double {
+        var total: Double = 0.0
+        for produto in produtos {
+            total += produto.price
+        }
+        return total
+    }
+    
+    func total3() -> Double {
+        return self.produtos.map { $0.price }.reduce(0, +)
+    }
+    
+}
+
+let myCart = Cart()
+
+let produto1 = Product(id: 1, name: "Iphone", price: 1200.0)
+let produto2 = Product(id: 2, name: "Ipod", price: 1000.0)
+
+myCart.addProduct(with: produto1)
+myCart.total()
+myCart.addProduct(with: produto2)
+myCart.total()
+myCart.removeProduct(id: 1)
+myCart.total()
+myCart.clearCart()
+myCart.removeProduct(id: 3)
+myCart.total()
+  
