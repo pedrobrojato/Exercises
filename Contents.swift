@@ -15,40 +15,30 @@ golsOfMatch(placar1: 0, placar2: 0)
 //Exercices
 
 //1
-func verifyCpf(cpfNumber: String) -> String {
-    if cpfNumber.count == 11 {
-        return "CPF VALIDO"
-    } else {
-        return "CPF INVALIDO"
-    }
+func verifyCpf(cpfNumber: String) -> Bool {
+    return cpfNumber.count == 11
 }
-verifyCpf(cpfNumber: "47596049877")
+
+let isValid = verifyCpf(cpfNumber: "47596049877")
+    
+
 
 //2
 func cnpjValid(cnpjNumber: String) -> Bool {
-    (cnpjNumber.count == 14) ? true : false
+    return cnpjNumber.count == 14
 }
 cnpjValid(cnpjNumber: "42997127000177")
 
 //3
-func documentsIsValid(myCpf: String, myCnpj: String) -> String {
-    var validCpf: Bool {
-        (myCpf.count == 11)
-    }
-    var validCnj: Bool {
-        (myCnpj.count == 11)
-    }
-    if validCpf || validCnj == true {
-        return "DADOS VALIDOS"
-    } else {
-        return "CPF OU CNPJ INVALIDOS"
-    }
+func documentsIsValid(myCpf: String, myCnpj: String) -> Bool {
+    return verifyCpf(cpfNumber: myCpf) ||
+        cnpjValid(cnpjNumber: myCnpj)
 }
 documentsIsValid(myCpf: "47596049877", myCnpj: "42997127000177")
 
-//4
 func isValidCep(cepNumber: String) -> Bool {
-    (cepNumber.count == 8) ? true : false
+    return cepNumber.count == 8
+    
 }
 isValidCep(cepNumber: "08122200")
 
@@ -73,18 +63,23 @@ func verifyPhoneNumber(numberCel: String) -> String {
 verifyPhoneNumber(numberCel: "985535088")
 
 //7
-func returnNumbers(text: String) -> [String] {
-    
+func returnTheNumbers(myText: String) -> String {
+    var number: String = ""
+    for c in myText {
+        if Int(String(c)) != nil {
+            number.append(c)
+        }
+    }
+    return number
 }
+returnTheNumbers(myText: "CIVIC 2008")
+
 //8
-func MaskNumbersCard(numberCard: String) -> String {
-    
-}
+
 
 //9
-func formatToCurrency(valueProduct: Double) -> String {
-    
-}
+
 
 //10
+
 
